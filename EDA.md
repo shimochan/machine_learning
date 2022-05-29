@@ -1,3 +1,5 @@
+※作成中
+
 # EDA(Exploratory Data Analysis)
 
 - [EDA(Exploratory Data Analysis)](#edaexploratory-data-analysis)

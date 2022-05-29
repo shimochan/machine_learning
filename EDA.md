@@ -152,8 +152,8 @@ venn2([set(train_df['category']), set(test['category'])], set_labels=('train', '
 ```python
 train_df['date'] = pd.to_datetime(train_df[['year', 'month', 'day']])
 
-plt.plot(train_df['date'], train_df[['変数']], color='blue')
-plt.plot(train_df['date'], train_df[['変数']], color='black')
+plt.plot(train_df['date'], train_df[['column']], color='blue')
+plt.plot(train_df['date'], train_df[['column']], color='black')
 ```
 
 

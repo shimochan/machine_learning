@@ -17,6 +17,8 @@
     - [散布図](#散布図)
     - [ベン図](#ベン図)
   - [時系列](#時系列)
+    - [折れ線グラフ](#折れ線グラフ)
+    - [statsmodels](#statsmodels)
   - [最後に](#最後に)
 
 ## 目的
@@ -42,7 +44,8 @@
 import sweetviz
 
 train_df.corr()
-fig, ax = plt.subplots(figsize=(12, 9)) ## 表示サイズ設定
+## 表示サイズ設定
+fig, ax = plt.subplots(figsize=(12, 9)) 
 sns.heatmap(df, square=True, vmax=1, vmin=-1, center=0)
 ```
 
@@ -103,7 +106,7 @@ train_df['column'].value_counts()
 周期的にデータが多い分布の列があるかも
 
 ```python
-## bin = 棒の数
+## bin:棒の数
 train_df.select_dtypes(np.number).hist(bins = 50,figsize =(30,20),color='orange')
 ```
 
@@ -145,7 +148,8 @@ venn2([set(train_df['category']), set(test['category'])], set_labels=('train', '
 
 ## 時系列
 
-基本折れ線グラフで見てみる  
+### 折れ線グラフ
+
 そのまま相関があるのか、1日ずれて相関がありそうか(ラグ特徴量作成につながる)  
 月ごと、週ごとにgroupby()して見てみるのもあり
 
@@ -156,6 +160,39 @@ plt.plot(train_df['date'], train_df[['column']], color='blue')
 plt.plot(train_df['date'], train_df[['column']], color='black')
 ```
 
+### statsmodels
+
+トレンド、季節、残差に分解できるライブラリ
+
+```python
+## 時系列分解して可視化
+!pip install statsmodels
+
+from statsmodels.tsa.seasonal import STL 
+
+#STL分解
+## period:周期性
+stl=STL(train_df['column'], period=12, robust=True)
+stl_series = stl.fit()
+
+## STL分解結果のグラフ化
+stl_series.plot()
+plt.show()
+```
+
+```python
+## 時系列分解して特徴量追加できる
+import statsmodels.api as sm
+
+result = sm.tsa.seasonal_decompose(train_df['column'], period=30)
+
+## トレンド
+train_df['column_trend'] = result.trend    
+## 残差
+train_df['column_reside'] = result.reside   
+## 季節性データ
+train_df['column_seasonal'] = result.seasonal 
+```
 
 ## 最後に
 

@@ -32,7 +32,7 @@
 最初の5行`train_df.head()`  
 最後の5行`train_df.tail()`  
 欠損値の確認`train_df.isnull().sum()`  
-全てnsnの列削除`train_df.dropna(axis=1, how='all')`  
+全てnanの列削除`train_df.dropna(axis=1, how='all')`  
 値はあるけど、全て同じ値の列削除  
 
 ```python

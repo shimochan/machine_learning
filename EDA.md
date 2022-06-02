@@ -49,10 +49,6 @@ for col in train_df.columns:
 
 ```python
 ## ヒートマップで表示
-!pip install sweetviz
-
-import sweetviz
-
 train_df.corr()
 ## 表示サイズ設定
 fig, ax = plt.subplots(figsize=(12, 9)) 

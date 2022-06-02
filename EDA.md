@@ -66,7 +66,7 @@ sweetviz
 ```python
 !pip install sweetviz
 
-import sweetviz
+import sweetviz as sv
 train_df = pd.read_csv(INPUT_PATH + 'train.csv')
 test_df = pd.read_csv(INPUT_PATH + 'test.csv')
 

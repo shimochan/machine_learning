@@ -49,7 +49,7 @@ for col in train_df.columns:
 
 ```python
 ## ヒートマップで表示
-train_df.corr()
+df = train_df.corr()
 ## 表示サイズ設定
 fig, ax = plt.subplots(figsize=(12, 9)) 
 sns.heatmap(df, square=True, vmax=1, vmin=-1, center=0)
